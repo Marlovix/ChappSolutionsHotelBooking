@@ -1,0 +1,62 @@
+{% extends "base.html" %} {% block title %}Reservas{% endblock %} {% load static %}{% block css %}
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/dataTables.bootstrap4.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.6/css/responsive.bootstrap4.min.css">
+<link rel="stylesheet" href="{% static 'hotelBooking/css/bookings.css' %}"> {% endblock %}{% block content %}
+<table id="bookings-table" class="table table-hover dt-responsive nowrap">
+    <thead>
+        <tr>
+            <th>Entrada</th>
+            <th>Salida</th>
+            <th>Tipo de habitación</th>
+            <th>Huéspedes</th>
+            <th>Precio</th>
+            <th>Localizador</th>
+            <th>Habitación</th>
+            <th>Email</th>
+            <th>Nombre</th>
+            <th>Teléfono</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for booking in bookings %}
+        <tr>
+            <td>{{booking.checkin}}</td>
+            <td>{{booking.checkout}}</td>
+            <td>{{booking.type_room}}</td>
+            <td>{{booking.guests}}</td>
+            <td>{{booking.price}}</td>
+            <td>{{booking.reservation_id}}</td>
+            <td>{{booking.number}}</td>
+            <td>{{booking.email}}</td>
+            <td>{{booking.name}}</td>
+            <td>{{booking.phone}}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<div class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+            </div>
+            <div class="modal-body">
+                <p>Modal body text goes here.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} {% block js %}
+<script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
+<script src="https://cdn.datatables.net/responsive/2.2.6/js/dataTables.responsive.min.js"></script>
+<script src="https://cdn.datatables.net/responsive/2.2.6/js/responsive.bootstrap4.min.js"></script>
+<script src="{% static 'hotelBooking/js/bookings.js' %}"></script>
+{% endblock %}

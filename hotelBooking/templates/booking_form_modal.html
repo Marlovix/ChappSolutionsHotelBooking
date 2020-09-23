@@ -1,0 +1,71 @@
+<div id="booking-form-modal" class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Complete los datos de su reserva</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+            </div>
+            <div class="modal-body">
+                <input id="checkin-booking" type="hidden">
+                <input id="checkout-booking" type="hidden">
+                <input id="type-room-booking" type="hidden">
+                <input id="guests-booking" type="hidden">
+                <input id="total-price-booking" type="hidden">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="form-group text-center">
+                            <label for="checkin-modal" class="text-center">Entrada</label>
+                            <input id="checkin-modal" type="text" class="form-control-plaintext text-center" placeholder="22/09/2020" readonly>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group text-center">
+                            <label for="checkout-modal" class="text-center">Salida</label>
+                            <input id="checkout-modal" type="text" class="form-control-plaintext text-center" placeholder="25/09/2020" readonly>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group text-center">
+                            <label for="guests-modal">Huéspedes</label>
+                            <input id="guests-modal" type="text" class="form-control-plaintext text-center" placeholder="4" readonly>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="name-booking">Nombre de contacto</label>
+                    <input id="name-booking" type="text" class="form-control form-control-sm" max="30" required>
+                    <small id="name-error" class="form-text text-danger"></small>
+                </div>
+                <div class="form-group">
+                    <label for="email-booking">Correo de contacto</label>
+                    <input id="email-booking" type="email" class="form-control form-control-sm" max="254" required>
+                    <small id="email-error" class="form-text text-danger"></small>
+                </div>
+                <div class="form-group">
+                    <label for="phone-booking">Teléfono de contacto</label>
+                    <input id="phone-booking" type="text" class="form-control form-control-sm" max="15" required>
+                    <small id="phone-error" class="form-text text-danger"></small>
+                </div>
+                <div class="form-group">
+                    <label>Precio total</label>
+                    <div class="card card-body">
+                        <p>
+                            <span id="total-price-modal"></span> por
+                            <span id="duration-modal"></span> en una
+                            <span id="type-room-modal"></span>
+                        </p>
+                    </div>
+                </div>
+                <div id="success-booking-alert" class="alert alert-success" role="alert">
+                    Su reserva se ha realizado correctamente. Su número de reserva es <b id="booking-code"></b>.
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="booking-btn" type="button" class="btn btn-primary">Reservar</button>
+                <button type="submit" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>

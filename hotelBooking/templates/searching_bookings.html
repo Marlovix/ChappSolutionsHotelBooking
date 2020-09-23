@@ -1,0 +1,49 @@
+{% extends "base.html" %} {% block title %}Búsqueda de hoteles{% endblock %} {% load static %} {% block css %}
+<link rel="stylesheet" href="{% static 'hotelBooking/css/searching_bookings.css' %}"> {% endblock %} {% block content %}
+<div class="row">
+    <div class="col-sm-12">
+        <h3>Haga su reserva</h3>
+    </div>
+</div>
+<hr>
+<form>
+    {% csrf_token %}
+    <div class="row">
+        <div class="col-lg-3">
+            <div class="form-group">
+                <label>Fecha de entrada</label>
+                <input type="date" id="checkin-input" min="{{min_date}}" max="{{max_date}}" class="form-control" onkeydown="return false">
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="form-group">
+                <label>Fecha de salida</label>
+                <input type="date" id="checkout-input" min="{{min_date}}" max="{{max_date}}" class="form-control" onkeydown="return false">
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="form-group">
+                <label>Nº de huéspedes</label>
+                <select id="guest-input" class="form-control">
+                    {% for option in options_guests %}
+                        <option value="{{option}}">{{option}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <label></label>
+            <a id="search-btn" tabindex="0" class="btn btn-outline-secondary btn-lg btn-block" role="button" data-toggle="popover" data-trigger="focus">
+                Buscar
+                <span id="loading-btn">
+                    <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+                    <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+                    <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+                </span>
+            </a>
+        </div>
+    </div>
+</form>
+{% include 'booking_form_modal.html' %} {% include 'search_results.html' %} {% endblock %} {% block js %}
+<script src="{% static 'hotelBooking/js/searching_bookings.js' %}"></script>
+{% endblock %}
