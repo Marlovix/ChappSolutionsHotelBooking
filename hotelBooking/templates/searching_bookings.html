@@ -1,5 +1,5 @@
 {% extends "base.html" %} {% block title %}Búsqueda de hoteles{% endblock %} {% load static %} {% block css %}
-<link rel="stylesheet" type="text/css" href="{% static 'hotelBooking/css/searching_bookings.css' %}"> {% endblock %} {% block content %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/searching_bookings.css' %}"> {% endblock %} {% block content %}
 <div class="row">
     <div class="col-sm-12">
         <h3>Haga su reserva</h3>
@@ -45,5 +45,5 @@
     </div>
 </form>
 {% include 'booking_form_modal.html' %} {% include 'search_results.html' %} {% endblock %} {% block js %}
-<script src="{% static 'hotelBooking/js/searching_bookings.js' %}"></script>
+<script src="{% static 'js/searching_bookings.js' %}"></script>
 {% endblock %}

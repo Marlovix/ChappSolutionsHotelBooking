@@ -1,7 +1,7 @@
 {% extends "base.html" %} {% block title %}Reservas{% endblock %} {% load static %}{% block css %}
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/dataTables.bootstrap4.min.css">
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.6/css/responsive.bootstrap4.min.css">
-<link rel="stylesheet" type="text/css" href="{% static 'hotelBooking/css/bookings.css' %}"> {% endblock %}{% block content %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/bookings.css' %}"> {% endblock %}{% block content %}
 <table id="bookings-table" class="table table-hover dt-responsive nowrap">
     <thead>
         <tr>
@@ -58,5 +58,5 @@
 <script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
 <script src="https://cdn.datatables.net/responsive/2.2.6/js/dataTables.responsive.min.js"></script>
 <script src="https://cdn.datatables.net/responsive/2.2.6/js/responsive.bootstrap4.min.js"></script>
-<script src="{% static 'hotelBooking/js/bookings.js' %}"></script>
+<script src="{% static 'js/bookings.js' %}"></script>
 {% endblock %}
