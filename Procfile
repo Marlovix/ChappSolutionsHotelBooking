@@ -1,1 +1,1 @@
-web: gunicorn ChappSolutions.w3sgi
+web: gunicorn ChappSolutions.wsgi
