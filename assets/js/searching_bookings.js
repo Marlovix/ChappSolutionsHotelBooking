@@ -1,66 +1,66 @@
 $(document).ready(function() {
 
-    searchBtn = $('#search-btn');
-    resultsContainer = $('#available-rooms');
+    searchBtn = $('#search-btn')
+    resultsContainer = $('#available-rooms')
     resultsList = $('#available-rooms-list')
-    checkIn = $('#checkin-input');
-    checkOut = $('#checkout-input');
-    guests = $('#guest-input');
-    bookingFormModal = $('#booking-form-modal');
-    bookingBtn = $('#booking-btn');
+    checkIn = $('#checkin-input')
+    checkOut = $('#checkout-input')
+    guests = $('#guest-input')
+    bookingFormModal = $('#booking-form-modal')
+    bookingBtn = $('#booking-btn')
 
-    validCheckIn = false;
-    validCheckOut = false;
+    validCheckIn = false
+    validCheckOut = false
 
-    msgEmptyDates = "Introduzca fecha de entrada y salida";
-    msgErrorDates = "La fecha de entrada debe ser anterior a la fecha de salida";
+    msgEmptyDates = "Introduzca fecha de entrada y salida"
+    msgErrorDates = "La fecha de entrada debe ser anterior a la fecha de salida"
     msgErrorEmptyInput = "El campo no puede estar vacío"
     msgErrorInvalidEmail = "El email introducido no es válido"
 
     searchBtn.popover({
         trigger: 'focus',
         content: msgEmptyDates
-    });
+    })
 
     // Check and handle the checkin input to show possible error messages
     checkIn.change(function() {
         changePopoverContent(msgEmptyDates)
-        searchBtn.popover('enable');
-        validCheckIn = false;
+        searchBtn.popover('enable')
+        validCheckIn = false
 
         if ($(this).val() != '') {
-            validCheckIn = true;
+            validCheckIn = true
             if (checkOut.val() != '') {
                 if (validDates()) {
-                    searchBtn.popover('disable');
-                    validCheckIn = true;
+                    searchBtn.popover('disable')
+                    validCheckIn = true
                 } else {
-                    changePopoverContent(msgErrorDates);
-                    validCheckOut = false;
+                    changePopoverContent(msgErrorDates)
+                    validCheckOut = false
                 }
             }
         }
-    });
+    })
 
     // Check and handle the checkout input to show possible error messages
     checkOut.change(function() {
         changePopoverContent(msgEmptyDates)
-        searchBtn.popover('enable');
-        validCheckOut = false;
+        searchBtn.popover('enable')
+        validCheckOut = false
 
         if ($(this).val() != '') {
-            validCheckOut = true;
+            validCheckOut = true
             if (checkIn.val() != '') {
                 if (validDates()) {
                     searchBtn.popover('disable')
-                    validCheckOut = true;
+                    validCheckOut = true
                 } else {
                     changePopoverContent(msgErrorDates)
-                    validCheckIn = false;
+                    validCheckIn = false
                 }
             }
         }
-    });
+    })
 
     // Search available rooms
     searchBtn.click(function() {
@@ -68,8 +68,8 @@ $(document).ready(function() {
         $('#no-available-rooms-alarms').css('display', 'none')
 
         if (validCheckIn && validCheckOut) {
-            $(this).addClass('disabled');
-            $('#loading-btn').css('display', 'inline-block');
+            $(this).addClass('disabled')
+            $('#loading-btn').css('display', 'inline-block')
 
             // Clean the result list. 1 item list is left to use it as template
             resultsList.children('li:not(:first-child)').remove()
@@ -95,7 +95,7 @@ $(document).ready(function() {
                     // Render results
                     if (results.data.length != 0) {
                         results.data.rooms.forEach(function(item, index) {
-                            itemList = resultsList.children('li');
+                            itemList = resultsList.children('li')
                             if (index != 0) {
                                 // The rest of results will be appended
                                 itemList = resultsList.children('li:first').clone()
@@ -117,7 +117,7 @@ $(document).ready(function() {
                             if (index != 0) {
                                 itemList.appendTo(resultsList)
                             }
-                        });
+                        })
                     }
 
                     // load data into modal form
@@ -131,20 +131,20 @@ $(document).ready(function() {
                     $('#duration-modal').text(results.data.duration)
 
                     resultsContainer.collapse('show')
-                    searchBtn.removeClass('disabled');
-                    $('#loading-btn').css('display', 'none');
+                    searchBtn.removeClass('disabled')
+                    $('#loading-btn').css('display', 'none')
                 },
                 error: function(request, status, error) {
-                    console.log(status);
-                    console.log(error);
+                    console.log(status)
+                    console.log(error)
                 }
-            });
+            })
         }
-    });
+    })
 
     // Select a room for booking 
     resultsList.on('click', 'button', function() {
-        dataContent = $(this).parent().parent();
+        dataContent = $(this).parent().parent()
 
         // End of loading data in modal form
         typeRoom = dataContent.children('.type-room-result').text().toLowerCase()
@@ -161,12 +161,12 @@ $(document).ready(function() {
         $('#type-room-booking').val(idTypeRoom)
         $('#total-price-booking').val(totalPrice)
 
-        bookingFormModal.modal();
-    });
+        bookingFormModal.modal()
+    })
 
     // Booking process
     $('#booking-btn').click(function(e) {
-        e.preventDefault();
+        e.preventDefault()
 
         validName = true
         validEmail = true
@@ -219,10 +219,10 @@ $(document).ready(function() {
                     $('#success-booking-alert').css('display', 'block')
                 },
                 error: function(request, status, error) {
-                    console.log(status);
-                    console.log(error);
+                    console.log(status)
+                    console.log(error)
                 }
-            });
+            })
         }
 
     })
@@ -233,19 +233,18 @@ $(document).ready(function() {
     })
 
     // Handle closing modal
-    $('#booking-form-modal').on('hidden.bs.modal', function(e) {
-
+    bookingFormModal.on('hidden.bs.modal', function(e) {
         // Do redirect if there is a booking code on modal
         if ($('#booking-code').text() != '') {
-            window.location.replace("/hotelBooking/bookings");
+            window.location.replace("/hotelBooking/bookings")
         }
     })
 
     // Change the popover content used to show error messages (validation)
     function changePopoverContent(content) {
-        searchBtn.attr('data-content', content);
-        var popover = searchBtn.data('bs.popover');
-        popover.setContent();
+        searchBtn.attr('data-content', content)
+        var popover = searchBtn.data('bs.popover')
+        popover.setContent()
     }
 
     // Check if dates input have good values (checkin < checkout)
@@ -254,16 +253,16 @@ $(document).ready(function() {
             inDate = new Date(checkIn.val())
             outDate = new Date(checkOut.val())
             if (inDate < outDate) {
-                return true;
+                return true
             }
         }
-        return false;
+        return false
     }
 
     // Check if email is valid
     function validateEmail(email) {
-        const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-        return re.test(String(email).toLowerCase());
+        const re = /^(([^<>()\[\]\\.,:\s@"]+(\.[^<>()\[\]\\.,:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+        return re.test(String(email).toLowerCase())
     }
 
-});
+})
