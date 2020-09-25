@@ -2,10 +2,10 @@ from .base import *
 from pathlib import Path
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 #ALLOWED_HOSTS = ['chappsolutionshotelbooking.herokuapp.com']
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['chappsolutionshotelbooking.herokuapp.com']
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
