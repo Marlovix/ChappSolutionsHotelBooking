@@ -4,7 +4,7 @@ from pathlib import Path
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['chappsolutionshotelbooking.herokuapp.com']
+ALLOWED_HOSTS = ['*']
 #ALLOWED_HOSTS = ['chappsolutionshotelbooking.herokuapp.com']
 
 # Database
