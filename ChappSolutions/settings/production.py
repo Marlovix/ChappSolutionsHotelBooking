@@ -2,7 +2,7 @@ from .base import *
 from pathlib import Path
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 #ALLOWED_HOSTS = ['chappsolutionshotelbooking.herokuapp.com']
 ALLOWED_HOSTS = ['chappsolutionshotelbooking.herokuapp.com']
